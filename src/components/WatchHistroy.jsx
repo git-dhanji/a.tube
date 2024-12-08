@@ -38,9 +38,12 @@ const WatchHistory = () => {
       <div className="">{<LeftNav />}</div>
       {/* wathc History ui */}
       <div className="w-screen max-w-5xl p-4 bg-black relative">
+      <p className="text-2xl font-semibold text-white pb-4">Watch History</p>
+        
         {
           historyData.map((data,index)=>(
-            <div className="flex bg-black shadow-md rounded-lg overflow-hidden w-full max-w-3xl mx-auto cursor-pointer">
+            <div className="flex bg-black shadow-md rounded-lg overflow-hidden w-full max-w-3xl mx-auto cursor-pointer mb-4 hover:bg-zinc-700">
+              
           {/* Thumbnail */}
           <div className="relative w-1/3 pb-4">
             <img

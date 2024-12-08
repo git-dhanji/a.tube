@@ -8,6 +8,7 @@ import WatchHistory from "./components/WatchHistroy";
 
 import { AppContext } from "./context/contextApi";
 import ChannelProfile from "./components/ChannelProfile";
+import SubscripationPage from "./components/SubscripationPage";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -26,6 +27,10 @@ const router = createBrowserRouter([
         element:<ChannelProfile/>
       },
       {
+        path:'/subscribe',
+        element:<SubscripationPage/>
+      },
+      {
         path: "/searchResult/:searchQuery",
         element: <SearchResult />,
       },
@@ -39,6 +44,7 @@ const router = createBrowserRouter([
 
 function App() {
   return (
+    
     <AppContext>
       <RouterProvider router={router} />
     </AppContext>

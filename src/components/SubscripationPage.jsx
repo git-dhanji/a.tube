@@ -1,5 +1,6 @@
 import React from "react";
 import SubscriptionCard from "./SubscriptionCard";
+import LeftNav from "./LeftNav";
 
 const subscriptions = [
   {
@@ -28,6 +29,9 @@ const subscriptions = [
 
 const Subscriptions = () => {
   return (
+    <>
+    <div>
+    <div className='absolute  left-0'>{<LeftNav/>}</div>
     <div className="p-6 max-w-4xl mx-auto bg-black">
       <h1 className="text-2xl font-bold mb-6 text-white">Subscriptions</h1>
       <div className="grid gap-4">
@@ -36,6 +40,8 @@ const Subscriptions = () => {
         ))}
       </div>
     </div>
+    </div>
+    </>
   );
 };
 

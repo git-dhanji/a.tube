@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import LeftNav from "./LeftNav";
 
 const ChannelProfile = () => {
   const [isSubscribed, setIsSubscribed] = useState(false);
@@ -7,8 +8,9 @@ const ChannelProfile = () => {
     setIsSubscribed(!isSubscribed);
   };
   return (
-    <div className="h-full w-screen bg-black">
-      <div className="bg-black text-white min-h-screen max-w-4xl mx-auto">
+    <div className="h-full max-w-screen bg-black flex">
+      <div className="absolute"><LeftNav/></div>
+      <div className="bg-black text-white min-h-screen w-3/5 mx-auto">
         {/* Header Section */}
         <div className="relative">
           <img

@@ -26,7 +26,7 @@ const WatchHistory = () => {
     {
       id: 3,
       title: "Advanced CSS Techniques",
-      description: "Explore advanced CSS concepts and styling tricks",
+      description: "Explore advanced CSS concepts and styling ",
       thumbnail: images.image3,
       timeWatched: "3 days ago",
     },

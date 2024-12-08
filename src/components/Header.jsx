@@ -35,7 +35,6 @@ const Header = () => {
   
   return (
     <div className="sticky top-0 z-10 flex flex-row items-center justify-between h-14 px-4 md:px-5 bg-black">
-      {loading && <Loader />}
       <div className="flex h-5 items-center">
         {pageName !== "video" && (
           <div
@@ -50,7 +49,7 @@ const Header = () => {
           </div>
         )}
         <Link to="/" className="flex h-5 items-center ">
-        <p className="text-rose-400 text-3xl">Streaming</p>
+        <p className="text-rose-400 md:text-3xl sm:block hidden">Streaming</p>
         </Link>
       </div>
       <div className="group flex items-center">

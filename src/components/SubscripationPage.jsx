@@ -1,12 +1,12 @@
 import React from "react";
 import SubscriptionCard from "./SubscriptionCard";
 import LeftNav from "./LeftNav";
-
+import {man,panda,profile} from '../assets/avatar'
 const subscriptions = [
   {
     id: 1,
     name: "TechSavvy",
-    avatar: "https://via.placeholder.com/50",
+    avatar: man,
     videos: 120,
     subscriber:"100"
     
@@ -14,14 +14,14 @@ const subscriptions = [
   {
     id: 2,
     name: "GamingWorld",
-    avatar: "https://via.placeholder.com/50",
+    avatar: panda,
     videos: 85,
     subscriber:'1M'
   },
   {
     id: 3,
     name: "Daily Vlogs",
-    avatar: "https://via.placeholder.com/50",
+    avatar: profile,
     videos: 45,
     subscriber:"300K"
   },

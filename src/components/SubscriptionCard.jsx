@@ -12,7 +12,7 @@ const SubscriptionCard = ({ channel }) => {
       <img
         src={channel.avatar}
         alt={`${channel.name} avatar`}
-        className="w-12 h-12 rounded-full"
+        className="w-20 h-20 rounded-full"
       />
       <div className="ml-4 flex-1">
         <h3 className="text-lg font-semibold text-white">{channel.name}</h3>

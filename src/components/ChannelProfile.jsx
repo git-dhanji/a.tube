@@ -1,8 +1,37 @@
 import React, { useState } from "react";
 import LeftNav from "./LeftNav";
+import {man,panda,gamer,profile} from '../assets/avatar'
 
 const ChannelProfile = () => {
   const [isSubscribed, setIsSubscribed] = useState(false);
+
+
+  const videoData =[
+    {
+      thumbnail:man,
+      id:1,
+      title:'welcome to my project representation',
+      descripation:'today i am going to create some  thing special',
+      views:'200',
+      time:'2h ago'
+    },
+    {
+      thumbnail:panda,
+      id:1,
+      title:'welcome to my project representation',
+      descripation:'today i am going to create some  thing special',
+      views:'200',
+      time:'2h ago'
+    },
+    {
+      thumbnail:profile,
+      id:1,
+      title:'welcome to my project representation',
+      descripation:'today i am going to create some  thing special',
+      views:'200',
+      time:'2h ago'
+    }
+  ]
 
   const handleSubscription = () => {
     setIsSubscribed(!isSubscribed);
@@ -46,19 +75,18 @@ const ChannelProfile = () => {
         {/* Videos Section */}
         <div className="p-4">
           <h2 className="text-xl font-bold mb-4">All Videos</h2>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-            {[...Array(8)].map((_, index) => (
+          <div className="grid grid-cols-2 md:grid-cols-3  gap-4">
+            {videoData.map((_, index) => (
               <div
                 key={index}
-                className="bg-gray-900 p-2 rounded-md hover:scale-105 transform transition"
+                className="bg-gray-900 p-2 rounded-md hover:scale-105 transform transition cursor-pointer"
               >
                 <img
-                  src="https://img.freepik.com/free-vector/young-prince-vector-illustration_1308-174367.jpg?t=st=1733634377~exp=1733637977~hmac=4b56d8e42c65eea6d2d90f12fcee63102e20da2f31e5bf41d0fa718e656332ec&w=826"
-                  alt="Video Thumbnail"
+                  src={_.thumbnail}
                   className="w-full h-32 object-cover rounded-md"
                 />
-                <h3 className="text-sm font-bold mt-2">Video Heading...</h3>
-                <p className="text-sm text-gray-400">7,012 views · 2h ago</p>
+                <h3 className="text-sm font-bold mt-2">{_.title}</h3>
+                <div className="text-sm text-gray-400 flex gap-4"><p className="text-red-50">{_.views}views</p> <p>{_.time}</p></div>
               </div>
             ))}
           </div>

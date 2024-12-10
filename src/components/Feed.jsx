@@ -4,6 +4,7 @@ import LeftNav from "./LeftNav";
 import VideoCard from "./VideoCard";
 const Feed = () => {
   const { loading, searchResults } = useContext(Context);
+  console.log(searchResults)
   useEffect(() => {
     document.getElementById("root").classList.remove("custom-h");
   }, []);

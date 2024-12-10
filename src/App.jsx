@@ -9,6 +9,11 @@ import WatchHistory from "./components/WatchHistroy";
 import { AppContext } from "./context/contextApi";
 import ChannelProfile from "./components/ChannelProfile";
 import SubscripationPage from "./components/SubscripationPage";
+import Login from "./components/Login";
+import Upload from "./components/Upload";
+import CreateChannel from "./components/CreateChannel";
+import SignIn from "./components/SignIn";
+import EditProfile from "./components/EditProfile";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -23,12 +28,32 @@ const router = createBrowserRouter([
         element:<WatchHistory/>
       },
       {
-        path:'/profile',
+        path:'create-channel',
+        element:<CreateChannel/>
+      },
+      {
+        path:'edit-profile',
+        element:<EditProfile/>
+      },
+      {
+        path:'sign-in',
+        element:<SignIn/>
+      },
+      {
+        path:'/channel',
         element:<ChannelProfile/>
+      },
+      {
+        path:'/login',
+        element:<Login/>
       },
       {
         path:'/subscribe',
         element:<SubscripationPage/>
+      },
+      {
+        path:'/upload',
+        element:<Upload/>
       },
       {
         path: "/searchResult/:searchQuery",

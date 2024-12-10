@@ -1,3 +1,5 @@
+
+
 import { useContext, useState, useEffect } from "react";
 import { Context } from "./../context/contextApi";
 import { Link, useLocation, useNavigate } from "react-router-dom";
@@ -8,7 +10,10 @@ import { RiVideoAddLine } from "react-icons/ri";
 import { CgClose } from "react-icons/cg";
 import Loader from "./../shared/Loader";
 
+
+
 const Header = () => {
+  
   const [searchQuery, setSearchQuery] = useState("");
   const { loading, mobileMenu, setMobileMenu, users, logout } =
     useContext(Context);
@@ -46,6 +51,7 @@ const Header = () => {
     navigate("/");
     logout();
   };
+
   return (
     <div className="sticky top-0 z-10 flex flex-row items-center justify-between h-14 px-4 md:px-5 bg-black dark:bg-black">
       {loading && <Loader />}
@@ -130,22 +136,27 @@ const Header = () => {
                 </div>
 
                 <div className="px-4 py-4 flex justify-between">
-                  <div
-                    className="border cursor-pointer hover:bg-red-600 hover:text-white border-white rounded text-center p-1"
-                    onClick={() => {
-                      navigate("/upload");
-                      setDropdownOpen(!dropdownOpen);
-                    }}
-                  >
-                    Upload video
-                  </div>
-                  <div className="border cursor-pointer hover:bg-gray-600 hover:text-black border-white rounded text-center p-1"
-                  onClick={()=>{
-                    navigate('/channel')
-                  }}
-                  >
-                    View Channel
-                  </div>
+                  {users ? (
+                    <div
+                      className="border cursor-pointer hover:bg-gray-600 hover:text-black border-white rounded text-center p-1"
+                      onClick={() => {
+                        navigate("/channel");
+                        setDropdownOpen(!dropdownOpen);
+                      }}
+                    >
+                      View Channel
+                    </div>
+                  ) : (
+                    <div
+                      className="border cursor-pointer hover:bg-gray-600 hover:text-black border-white rounded text-center p-1"
+                      onClick={() => {
+                        navigate("/create-channel");
+                        setDropdownOpen(!dropdownOpen);
+                      }}
+                    >
+                      Create Channel
+                    </div>
+                  )}
                 </div>
                 <div
                   className="px-4 py-2 hover:bg-gray-800 cursor-pointer"

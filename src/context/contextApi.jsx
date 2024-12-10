@@ -1,7 +1,4 @@
-/* eslint-disable react/prop-types */
-/* eslint-disable no-undef */
-import { createContext, useState } from "react";
-import { useEffect } from "react";
+import { createContext, useState, useEffect } from "react";
 import { fetchDataFromApi } from "../utils/api";
 
 export const Context = createContext();
@@ -11,17 +8,19 @@ export const AppContext = (props) => {
   const [searchResults, setSearchResults] = useState([]);
   const [selectCategories, setSelectCategories] = useState("New");
   const [mobileMenu, setMobileMenu] = useState(false);
-  const [users, setUser] = useState(null); // `user` is null if not logged in
- 
-
+  const [users, setUser] = useState(null);
+  const [channelData, setChannelData] = useState(null);
 
   useEffect(() => {
     featchSelectedCategoryData(selectCategories);
+
+    // Load user and channel data from localStorage
     const storedUser = localStorage.getItem("user");
-    if (storedUser) {
-      setUser(JSON.parse(storedUser));
-    }
+    const storedChannel = localStorage.getItem("channelData");
+    if (storedUser) setUser(JSON.parse(storedUser));
+    if (storedChannel) setChannelData(JSON.parse(storedChannel));
   }, [selectCategories]);
+
   const featchSelectedCategoryData = (query) => {
     setLoading(true);
     fetchDataFromApi(`search/?q=${query}`).then(({ contents }) => {
@@ -30,19 +29,20 @@ export const AppContext = (props) => {
     });
   };
 
- 
-
-  // Login function
-  const login = (userData) => {
-    setUser(userData);
-    localStorage.setItem("user", JSON.stringify(userData));
+  const login = (data) => {
+    setUser(data);
+    localStorage.setItem("user", JSON.stringify(data)); // Persist user data if needed
   };
+  
 
-  // Logout function
   const logout = () => {
     setUser(null);
-    // navigate('/')
     localStorage.removeItem("user");
+  };
+
+  const createChannel = (data) => {
+    setChannelData(data);
+    localStorage.setItem("channelData", JSON.stringify(data));
   };
 
   return (
@@ -50,8 +50,10 @@ export const AppContext = (props) => {
       value={{
         loading,
         users,
+        channelData,
         login,
         logout,
+        createChannel,
         setLoading,
         searchResults,
         selectCategories,

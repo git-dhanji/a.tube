@@ -2,28 +2,31 @@
 
 import { useContext, useState, useEffect } from "react";
 import { Context } from "./../context/contextApi";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, unstable_HistoryRouter, useLocation, useNavigate } from "react-router-dom";
 
 import { SlMenu } from "react-icons/sl";
 import { IoIosSearch } from "react-icons/io";
 import { RiVideoAddLine } from "react-icons/ri";
 import { CgClose } from "react-icons/cg";
-import Loader from "./../shared/Loader";
 
 
 
 const Header = () => {
   
+  
   const [searchQuery, setSearchQuery] = useState("");
-  const { loading, mobileMenu, setMobileMenu, users, logout } =
+  const {  mobileMenu, setMobileMenu, users, logout } =
     useContext(Context);
   const [dropdownOpen, setDropdownOpen] = useState(false);
-
   const navigate = useNavigate();
   const { pathname } = useLocation();
   const pageName = pathname?.split("/")?.filter(Boolean)?.[0];
+  const data=JSON.parse(localStorage.getItem('user'))
+ 
+  const userData =data
 
   useEffect(() => {
+    
     document.documentElement.classList.add("dark");
     return () => {
       document.documentElement.classList.remove("dark");
@@ -54,7 +57,6 @@ const Header = () => {
 
   return (
     <div className="sticky top-0 z-10 flex flex-row items-center justify-between h-14 px-4 md:px-5 bg-black dark:bg-black">
-      {loading && <Loader />}
       <div className="flex h-5 items-center">
         {pageName !== "video" && (
           <div
@@ -95,7 +97,7 @@ const Header = () => {
       </div>
       <div className="flex items-center relative">
         <div className="hidden md:flex">
-          {users && (
+          {userData && (
             <div
               className="flex items-center justify-center h-10 w-10 rounded-full hover:bg-[#303030]/[0.6]"
               onClick={() => navigate("/upload")}
@@ -109,28 +111,24 @@ const Header = () => {
           onClick={toggleDropdown}
         >
           <img
-            src={
-              users
-                ? "https://api.multiavatar.com/johndoe.svg"
-                : "https://api.multiavatar.com/guest.svg"
-            }
+            src={userData?.avatar}
             alt="User Avatar"
           />
         </div>
         {dropdownOpen && (
           <div className="absolute right-0 top-12 bg-gray-900 text-white text-sm rounded-md shadow-lg py-2 w-64">
-            {users ? (
+            {userData ? (
               <>
                 <div className="px-4 py-3 border-b border-gray-700">
                   <div className="flex items-center">
                     <img
-                      src="https://api.multiavatar.com/johndoe.svg"
+                      src={userData?.avatar}
                       alt="User Avatar"
                       className="h-10 w-10 rounded-full mr-3"
                     />
                     <div>
-                      <p className="font-semibold">{users.name}</p>
-                      <p className="text-gray-400 text-xs">{users.email}</p>
+                      <p className="font-semibold">{userData?.username}</p>
+                      <p className="text-gray-400 text-xs">{userData?.email}</p>
                     </div>
                   </div>
                 </div>
@@ -188,19 +186,19 @@ const Header = () => {
                   className="px-4 py-2 hover:bg-gray-800 cursor-pointer"
                   onClick={() => {
                     setDropdownOpen(!dropdownOpen);
-                    navigate("/sign-in");
+                    navigate("/register");
                   }}
                 >
-                  Sign In
+                 Register
                 </div>
                 <div
                   className="px-4 py-2 hover:bg-gray-800 cursor-pointer"
                   onClick={() => {
-                    navigate("/create-channel");
+                    navigate("/sign-in");
                     setDropdownOpen(!dropdownOpen);
                   }}
                 >
-                  Create Channel
+                  Login
                 </div>
               </>
             )}

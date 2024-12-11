@@ -12,28 +12,33 @@ export const AppContext = (props) => {
   const [channelData, setChannelData] = useState(null);
 
   useEffect(() => {
-    featchSelectedCategoryData(selectCategories);
+    fetchSelectedCategoryData(selectCategories);
 
     // Load user and channel data from localStorage
-    const storedUser = localStorage.getItem("user");
-    const storedChannel = localStorage.getItem("channelData");
-    if (storedUser) setUser(JSON.parse(storedUser));
-    if (storedChannel) setChannelData(JSON.parse(storedChannel));
+    // const storedUser = localStorage.getItem("user");
+    // const storedChannel = localStorage.getItem("channelData");
+    
+    // if (storedUser) setUser(JSON.parse(storedUser));
+    // if (storedChannel) setChannelData(JSON.parse(storedChannel));
   }, [selectCategories]);
 
-  const featchSelectedCategoryData = (query) => {
+  const fetchSelectedCategoryData = (query) => {
     setLoading(true);
-    fetchDataFromApi(`search/?q=${query}`).then(({ contents }) => {
-      setSearchResults(contents);
-      setLoading(false);
-    });
+    fetchDataFromApi(`search/?q=${query}`)
+      .then(({ contents }) => {
+        setSearchResults(contents);
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+        setLoading(false);  // Ensure loading state is turned off in case of error
+      });
   };
 
   const login = (data) => {
     setUser(data);
-    localStorage.setItem("user", JSON.stringify(data)); // Persist user data if needed
+    localStorage.setItem("user", JSON.stringify(data)); // Persist user data
   };
-  
 
   const logout = () => {
     setUser(null);

@@ -9,11 +9,11 @@ import WatchHistory from "./components/WatchHistroy";
 import { AppContext } from "./context/contextApi";
 import ChannelProfile from "./components/ChannelProfile";
 import SubscripationPage from "./components/SubscripationPage";
-import Login from "./components/Login";
 import Upload from "./components/Upload";
 import CreateChannel from "./components/CreateChannel";
 import SignIn from "./components/SignIn";
 import EditProfile from "./components/EditProfile";
+import Register from "./components/Register";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -21,39 +21,39 @@ const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <Feed />
+        element: <Feed />,
       },
       {
-        path:'history',
-        element:<WatchHistory/>
+        path: "history",
+        element: <WatchHistory />,
       },
       {
-        path:'create-channel',
-        element:<CreateChannel/>
+        path: "create-channel",
+        element: <CreateChannel />,
       },
       {
-        path:'edit-profile',
-        element:<EditProfile/>
+        path: "edit-profile",
+        element: <EditProfile />,
       },
       {
-        path:'sign-in',
-        element:<SignIn/>
+        path: "sign-in",
+        element: <SignIn />,
       },
       {
-        path:'/channel',
-        element:<ChannelProfile/>
+        path: "/channel",
+        element: <ChannelProfile />,
       },
       {
-        path:'/login',
-        element:<Login/>
+        path: "/register",
+        element: <Register/>,
       },
       {
-        path:'/subscribe',
-        element:<SubscripationPage/>
+        path: "/subscribe",
+        element: <SubscripationPage />,
       },
       {
-        path:'/upload',
-        element:<Upload/>
+        path: "/upload",
+        element: <Upload />,
       },
       {
         path: "/searchResult/:searchQuery",
@@ -68,8 +68,8 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
+  
   return (
-    
     <AppContext>
       <RouterProvider router={router} />
     </AppContext>

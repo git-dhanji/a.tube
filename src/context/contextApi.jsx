@@ -13,14 +13,7 @@ export const AppContext = (props) => {
 
   useEffect(() => {
     fetchSelectedCategoryData(selectCategories);
-
-    // Load user and channel data from localStorage
-    // const storedUser = localStorage.getItem("user");
-    // const storedChannel = localStorage.getItem("channelData");
-    
-    // if (storedUser) setUser(JSON.parse(storedUser));
-    // if (storedChannel) setChannelData(JSON.parse(storedChannel));
-  }, [selectCategories]);
+  }, []);
 
   const fetchSelectedCategoryData = (query) => {
     setLoading(true);
@@ -31,7 +24,7 @@ export const AppContext = (props) => {
       })
       .catch((error) => {
         console.error("Error fetching data:", error);
-        setLoading(false);  // Ensure loading state is turned off in case of error
+        setLoading(false); // Ensure loading state is turned off in case of error
       });
   };
 
